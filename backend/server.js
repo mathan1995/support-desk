@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", require("./routes/user.route"));
+app.use("/api/tickets", require("./routes/ticket.route"));
 
 app.get("*", (req, res) => {
   res.status(404).json({ message: "Error in finding route" });
