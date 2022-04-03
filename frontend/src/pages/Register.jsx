@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { register, reset } from "../features/auth/auth.slice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Spinner from "../components/Spinner";
+import { register, reset } from "../features/auth/auth.slice";
+
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -29,7 +31,6 @@ function Register() {
 
     // Redirect when logged In
     if (isSuccess || user) {
-      toast.success("Successfully Registered!!!");
       navigate("/");
     }
 
@@ -60,6 +61,8 @@ function Register() {
       dispatch(register(userData));
     }
   };
+
+  if (isLoading) return <Spinner />;
 
   return (
     <>
